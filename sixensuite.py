@@ -1,4 +1,13 @@
+#############################################################
+# Six en Suite                                              #
+# Fichier : sixensuite.py                                   #
+# Auteurs : Kaelig LE GOFF, Riwan ROUSSEAU, Jules THAMIN    #
+# Date : 03/2025                                            #
+#############################################################
+
 from random import shuffle
+from suites import *
+from multiples import *
 
 couleurs = ["bleu", "rouge", "vert", "jaune", "violet", "orange"]
 paquet = []
