@@ -48,12 +48,8 @@ def melanger(paquet, defausse):
         shuffle(paquet) # Mélange du paquet
     return paquet
 
-
-
 def piocher():
     pass
-
-
 
 
 # --------------------------------------------------------------------
