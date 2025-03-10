@@ -27,4 +27,4 @@ def is_win(liste):
                     return True
     return False
                 
-print(is_win([(4, 3, 'orange'), (4, 4, 'orange'), (4, 3, 'vert'), (4, 2, 'vert'), (4, 1, 'bleu'), (4, 1, 'bleu')]))
+print(is_win([(4, 4, 'orange'), (4, 4, 'orange'), (4, 4, 'orange'), (4, 4, 'orange'), (4, 4, 'orange'), (4, 4, 'orange')]))
