@@ -17,3 +17,4 @@ def is_win(liste):
         return False
     
     for i in range(len(liste)):
+        pass
