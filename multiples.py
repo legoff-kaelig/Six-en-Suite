@@ -9,11 +9,11 @@ def multiples(tirage):
     '''
     Entrée :
     
-        <tirage> : Le tirage tiré par le joueur, en format [[carte, dé, couleur], [carte, dé, couleur], [carte, dé, couleur]]
+        <tirage> : La matrice de tuples correspondant au tirage tiré par le joueur, en format [(carte, dé, couleur) , (...) , (carte, dé, couleur)] en fonction du nombre de cartes tirées.
         
     Sortie :
     
-        <cartesPiochables> : Les cartes piochables par le joueur
+        <cartesPiochables> : Les cartes piochables par le joueur, en format [(carte, dé, couleur) , (...) , (carte, dé, couleur)] en fonction du nombre de cartes piochables.
     
     '''
     
