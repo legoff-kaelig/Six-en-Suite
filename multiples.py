@@ -5,4 +5,14 @@
 # Date : 04/03/2025                                         #
 #############################################################
 
-def 
+def multiples(tirage):
+    '''
+    Entrée :
+    
+        <tirage> : Le tirage tiré par le joueur
+        
+    Sortie :
+    
+        <cartesPiochables> : Les cartes piochables par le joueur
+    
+    '''
