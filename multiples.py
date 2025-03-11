@@ -43,4 +43,3 @@ def multiples(tirage):
             indiceMultiples = 0
 
         indiceVerif = 2
-
