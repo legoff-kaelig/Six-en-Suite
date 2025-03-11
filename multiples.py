@@ -24,21 +24,13 @@ def multiples(tirage):
 
     for i in verif:
 
-        print("i :",i)
-
         for j in i:
 
-            print("j :",j)
-
             for k in tirage:
-
-                print("k :",k)
 
                 if j == k[indiceVerif]:
 
                     indiceMultiples += 1
-                
-                print("indicesMultiples :",indiceMultiples)
             
             if currentMajority[0][0] < indiceMultiples:
 
@@ -52,6 +44,3 @@ def multiples(tirage):
 
         indiceVerif = 2
 
-        print(currentMajority)
-
-multiples([(10, 0, "bleu") , (10, 3, "bleu") , (11, 3, "orange") , (11, 3, "violet")])
