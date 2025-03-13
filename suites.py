@@ -20,26 +20,34 @@ def is_win(liste):
     if len(liste) < 6:
         return False
 
-    couleur = [carte[2] for carte in liste]
-    valeurs = [carte[0] for carte in liste]
+    color = [carte[2] for carte in liste]
+    val = [carte[0] for carte in liste]
     
     # 6 même couleurs
-    for i in couleur:  
-        if couleur.count(i) >= 6:
+    for i in color:  
+        if color.count(i) >= 6:
             return True
+
 
     # 6 même valeurs
-    for x in valeurs:  
-        if valeurs.count(x) >= 6:
+    for x in val:  
+        if val.count(x) >= 6:
             return True
 
-    # Toutes les couleurs
 
+    # 6 de chaques couleurs
+    color_count = [0] * len(COULEURS)
 
+    for count in color:
+        if color.count(count) == 0:
+            return False
+        color_count[COULEURS.index(count)] += 1
 
+    for i in color_count:
+        if i == 0:
+            return False
 
-
-    return False
+    return True
 
         
-print(is_win([(4, 3, 'orange'), (5, 4, 'orange'), (7, 3, 'orange'), (4, 2, 'vert'), (8, 1, 'vert'), (4, 1, 'vert'), (7, 1, 'vert'), (7, 1, 'vert')]))
+print(is_win([(4, 3, 'bleu'), (5, 4, 'rouge'), (7, 3, 'vert'), (4, 2, 'jaune'), (8, 1, 'violet'), (4, 1, 'orange'), (7, 1, 'vert'), (7, 1, 'vert')]))
