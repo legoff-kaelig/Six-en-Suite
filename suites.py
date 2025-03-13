@@ -32,8 +32,12 @@ def is_win(liste):
         
         if nb_couleur >= 6:
             return True
-        else:
-            return False
         
-
-print(is_win([(4, 3, 'orange'), (4, 4, 'vert'), (4, 3, 'orange'), (4, 2, 'orange'), (1, 1, 'vert'), (7, 1, 'orange'), (7, 1, 'orange'), (7, 1, 'orange')]))
+    # Vérification des valeurs
+    nb_cartes = 0
+    for x in valeurs:
+        nb_cartes = valeurs.count(x)
+        if nb_cartes >= 6:
+            return True
+        
+print(is_win([(4, 3, 'orange'), (5, 4, 'vert'), (4, 3, 'vert'), (4, 2, 'vert'), (4, 1, 'vert'), (4, 1, 'vert'), (7, 1, 'vert'), (7, 1, 'vert')]))
