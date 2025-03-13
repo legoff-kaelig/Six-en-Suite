@@ -21,14 +21,6 @@ def is_win(liste):
     
     if len(liste) < 6:
         return False
-    
-    # for i in range(len(liste)-1):
-    #     for j in range(len(liste[i])):
-    #         if liste[i][j] == liste[i+1][j]:
-    #             x += 1
-    #             if x >= 5:
-    #                 return True
-    # return False
 
     couleur = [carte[2] for carte in liste]
     valeurs = [carte[0] for carte in liste]
@@ -36,7 +28,7 @@ def is_win(liste):
     # Vérification des couleurs
     nb_couleur = 0
     for i in couleur:
-        nb_couleur = COULEURS.count(couleur[i])
+        nb_couleur = COULEURS.count(i)
         
         if nb_couleur >= 6:
             return True
