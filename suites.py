@@ -5,28 +5,71 @@
 # Date : 03/2025                                            #
 #############################################################
 
-# from sixensuite import *
-# from multiples import *
+COULEURS = ["bleu", "rouge", "vert", "jaune", "violet", "orange"]
 
 def is_win(liste):
     """
-    Fonction qui renvoie True si la liste passée en paramètre est une suite gagnante, sinon False.
-    [(carte, dé, couleur), (carte, dé, couleur), (carte, dé, couleur)]
+    Fonction qui renvoie True si la liste passée en paramètre représente une suite gagnante, sinon False.
+    Exemple de format d'une liste de 3 cartes : [(carte, dé, couleur), (carte, dé, couleur), (carte, dé, couleur)]
 
-    [(4, 3, 'orange'), (9, 4, 'orange'), (7, 3, 'vert'), (2, 2, 'vert'), (7, 1, 'bleu'), (1, 1, 'bleu'), (1, 3, 'vert'), (8, 5, 'orange'), (11, 1, 'violet'), (2, 6, 'bleu'), (5, 1, 'violet'), (4, 5, 'rouge'), (3, 3, 'violet'), (2, 3, 'jaune'), (6, 2, 'bleu'), (12, 3, 'rouge'), (3, 4, 'orange'), (12, 2, 'bleu'), (5, 5, 'vert'), (5, 4, 'rouge'), (8, 2, 'vert'), (7, 4, 'jaune'), (12, 4, 'vert'), (7, 6, 'orange'), (1, 6, 'orange'), (9, 5, 'bleu'), (6, 4, 'vert'), (4, 4, 'bleu'), (6, 1, 'orange'), (12, 1, 'orange'), (10, 4, 'bleu'), (8, 3, 'jaune'), (5, 3, 'bleu'), (2, 1, 'rouge'), (10, 2, 'violet'), (1, 4, 'jaune'), (9, 2, 'jaune'), (10, 1, 'jaune'), (10, 3, 'orange'), (8, 6, 'bleu'), (2, 4, 'violet'), (1, 5, 'violet'), (9, 3, 'violet'), (2, 5, 'orange'), (10, 6, 'vert'), (10, 5, 'rouge'), (11, 3, 'bleu'), (6, 6, 'violet'), (11, 6, 'jaune'), (5, 2, 'orange'), (6, 5, 'jaune'), (7, 2, 'rouge'), (11, 2, 'orange'), (9, 6, 'rouge'), (4, 6, 'vert'), (8, 4, 'violet'), (11, 5, 'vert'), (6, 3, 'rouge'), (3, 6, 'rouge'), (4, 1, 'jaune'), (11, 4, 'rouge'), (12, 5, 'jaune'), (3, 2, 'jaune'), (3, 1, 'vert'), (5, 6, 'jaune'), (7, 5, 'violet'), (12, 6, 'violet'), (1, 2, 'rouge'), (3, 5, 'bleu'), (4, 2, 'violet'), (8, 1, 'rouge'), (9, 1, 'vert')]
+    Input:
+    liste (list): Une liste de tuples, où chaque tuple représente une carte avec sa valeur, sa valeur de dé, et sa couleur.
 
+    Output:
+    bool: True si la liste représente une suite gagnante, False sinon.
     """
-    x = 0
-
+    # Si la liste a moins de 6 cartes, pas de combinaison possible
     if len(liste) < 6:
         return False
-    
-    for i in range(len(liste)-1):
-        for j in range(len(liste[i])):
-            if liste[i][j] == liste[i+1][j]:
-                x += 1
-                if x >= 5:
-                    return True
-    return False
-                
-print(is_win([(4, 5, 'orange'), (4, 4, 'orange'), (4, 4, 'orange'), (4, 7, 'orange'), (4, 4, 'orange'), (4, 4, 'orange')]))
+
+    color = [carte[2] for carte in liste]
+
+    # Condition 1 : Vérifie s'il existe une couleur avec 6+ occurrences
+    for i in color:  
+        if color.count(i) >= 6:
+            return True
+
+
+    # Condition 2 : Vérifie la présence d'au moins une carte de chaque couleur
+    color_count = [0] * len(COULEURS)
+
+    for count in color:
+        color_count[COULEURS.index(count)] += 1
+
+    for k in color_count:
+        if k == 0:
+            return False
+
+    return True
+
+
+def test_suites():
+    """
+    Fonction de test pour vérifier les différentes conditions de victoire.
+    Vérifie is_win(), ne retourne :
+        - rien, si pas d'erreur
+        - crash s'il y en a une
+    """
+    # Cas perdant : moins de 6 cartes
+    assert is_win([(1, 2, "bleu"), (3, 4, "rouge"), (5, 6, "vert")]) == False
+    assert is_win([(2, 3, "jaune"), (4, 5, "violet"), (6, 1, "orange"), (1, 4, "rouge")]) == False
+
+    # Cas perdant : pas 6 cartes de la même couleur
+    assert is_win([(1, 2, "bleu"), (3, 4, "rouge"), (5, 6, "vert"), (2, 3, "jaune"), (4, 5, "violet"), (6, 1, "rouge")]) == False
+    assert is_win([(2, 3, "vert"), (4, 5, "vert"), (6, 1, "vert"), (1, 2, "vert"), (3, 4, "jaune"), (5, 6, "orange"), (2, 5, "bleu")]) == False
+
+    # Cas gagnant : 6 cartes de la même couleur
+    assert is_win([(1, 2, "bleu"), (3, 4, "bleu"), (5, 6, "bleu"), (2, 3, "bleu"), (4, 5, "bleu"), (6, 1, "bleu")]) == True
+    assert is_win([(2, 3, "rouge"), (4, 5, "rouge"), (6, 1, "rouge"), (1, 2, "rouge"), (3, 4, "rouge"), (5, 6, "rouge"), (2, 5, "rouge")]) == True
+
+    # Cas gagnant : 6 couleurs différentes
+    assert is_win([(1, 2, "bleu"), (3, 4, "rouge"), (5, 6, "vert"), (2, 3, "jaune"), (4, 5, "violet"), (6, 1, "orange")]) == True
+    assert is_win([(2, 3, "jaune"), (4, 5, "violet"), (6, 1, "orange"), (1, 2, "bleu"), (3, 4, "rouge"), (5, 6, "vert"), (2, 5, "jaune")]) == True
+
+    # Cas gagnant : plus de 6 cartes, mais contient 6 identiques
+    assert is_win([(1, 2, "bleu"), (3, 4, "bleu"), (5, 6, "bleu"), (2, 3, "bleu"), (4, 5, "bleu"), (6, 1, "bleu"), (2, 5, "rouge"), (3, 6, "vert")]) == True
+    assert is_win([(1, 2, "jaune"), (3, 4, "rouge"), (5, 6, "vert"), (2, 3, "violet"), (4, 5, "orange"), (6, 1, "bleu"), (2, 5, "bleu"), (3, 6, "jaune")]) == True
+
+    print("Tous les tests sont passés avec succès !")
+
+#test_suites()
